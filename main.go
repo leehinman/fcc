@@ -98,6 +98,9 @@ func flattenDefs(d []FieldDefinition, prefix string) []FieldDefinition {
 			defs = append(defs, def)
 			continue
 		}
+		if len(prefix) > 0 {
+			def.Name = prefix + "." + def.Name
+		}
 		flat_defs := flattenDefs(def.Fields, def.Name)
 		defs = append(defs, flat_defs...)
 	}
